@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/rootLayout"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="10dp"
+    android:layout_margin="8dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/parentLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="70dp"
+            android:layout_height="70dp" />
+
+        <TextView
+            android:id="@+id/appName"
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:textColor="#000"
+            android:text="AppName: "
+            android:textSize="11sp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/imageView"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/packagName"
+            android:layout_width="wrap_content"
+            android:textColor="#000"
+            android:text="Package Name: "
+            android:textSize="11sp"
+            app:layout_constraintTop_toBottomOf="@id/appName"
+            app:layout_constraintStart_toStartOf="@id/appName"
+            app:layout_constraintStart_toEndOf="@id/imageView"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/mainActivityClass"
+            android:layout_width="wrap_content"
+            android:textColor="#000"
+            android:text="Main Activity: "
+            android:textSize="11sp"
+            app:layout_constraintTop_toBottomOf="@id/packagName"
+            app:layout_constraintStart_toStartOf="@id/packagName"
+            app:layout_constraintStart_toEndOf="@id/imageView"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/versionCode"
+            android:layout_width="wrap_content"
+            android:textColor="#000"
+            android:text="Version Code: "
+            android:textSize="11sp"
+            app:layout_constraintTop_toBottomOf="@id/mainActivityClass"
+            app:layout_constraintStart_toStartOf="@id/mainActivityClass"
+            app:layout_constraintStart_toEndOf="@id/imageView"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/versionName"
+            android:layout_width="wrap_content"
+            android:textColor="#000"
+            android:text="Version Code: "
+            android:textSize="11sp"
+            app:layout_constraintTop_toBottomOf="@id/versionCode"
+            app:layout_constraintStart_toStartOf="@id/versionCode"
+            app:layout_constraintStart_toEndOf="@id/imageView"
+            android:layout_height="wrap_content" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
+
