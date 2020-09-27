@@ -46,26 +46,27 @@ class ListAdapter(context: Activity, optionList: ArrayList<ResolveInfo>?, packag
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        Log.d("notifying","true")
         var parent = optionList!![position]
-        holder.appName.text = String.format(context.resources.getString(R.string.app1_name)!!, parent.loadLabel(packageManager))
-        holder.packagName.text = String.format(context.resources.getString(R.string.package_name)!!, parent.activityInfo.packageName)
-        val packageInfo: PackageInfo = packageManager.getPackageInfo(parent.activityInfo.packageName, 0)
-        holder.mainActivityClass.text = String.format(context.resources.getString(R.string.activity_name)!!, parent.activityInfo.name)
-        holder.versionCode.text = String.format(context.resources.getString(R.string.version_code)!!, packageInfo.versionCode.toString())
-        holder.versionName.text = String.format(context.resources.getString(R.string.version_name)!!, packageInfo.versionName)
-        try {
+        holder.apply {
+            appName.text = String.format(context.resources.getString(R.string.app1_name)!!, parent.loadLabel(packageManager))
+            packagName.text = String.format(context.resources.getString(R.string.package_name)!!, parent.activityInfo.packageName)
+            val packageInfo: PackageInfo = packageManager.getPackageInfo(parent.activityInfo.packageName, 0)
+            mainActivityClass.text = String.format(context.resources.getString(R.string.activity_name)!!, parent.activityInfo.name)
+            versionCode.text = String.format(context.resources.getString(R.string.version_code)!!, packageInfo.versionCode.toString())
+            versionName.text = String.format(context.resources.getString(R.string.version_name)!!, packageInfo.versionName)
+            try {
 
-            Glide.with(context!!)
-                .load( parent.loadIcon(packageManager))
-                .thumbnail(0.1f)
-                .into(holder.imageView);
+                Glide.with(context!!)
+                    .load( parent.loadIcon(packageManager))
+                    .thumbnail(0.1f)
+                    .into(imageView);
 
-        } catch (e: RuntimeException) {
+            } catch (e: RuntimeException) {
 
-        }
-        holder.rootLayout.setOnClickListener{
-            launchActivityPublishSubject.onNext(parent)
+            }
+            rootLayout.setOnClickListener{
+                launchActivityPublishSubject.onNext(parent)
+            }
         }
 
     }
@@ -79,8 +80,6 @@ class ListAdapter(context: Activity, optionList: ArrayList<ResolveInfo>?, packag
     }
 
     fun setData(data: List<ResolveInfo>) {
-        Log.d("data","changed")
-        Log.d("size",data?.size.toString())
         this.optionList?.clear()
         this.optionList?.addAll(data)
         notifyDataSetChanged()
