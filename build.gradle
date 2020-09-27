@@ -21,6 +21,15 @@ allprojects {
     }
 }
 
+ext {
+    androidSupportVersion = '27.1.1'
+
+    libraries = [
+            kotlin           : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version",
+            androidSupport   : "com.android.support:support-v4:$androidSupportVersion",
+    ]
+
+}
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
