@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.widget.EditText
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -54,18 +55,18 @@ class MainActivity : AppCompatActivity() {
 
     fun intialiseRecyclerView(){
         var packageManager = getPackageManager()
-        var listResolver = FetchAppListUtil(this).getListOfApps()
+        listResolver = FetchAppListUtil(this).getListOfApps()
         Collections.sort(
                 listResolver,
                 ResolveInfo.DisplayNameComparator(packageManager)
         )
-        var copyList:List<ResolveInfo> = ArrayList(listResolver)
+        var copyList:List<ResolveInfo> = ArrayList(listResolver!!)
 
         val llm = LinearLayoutManager(this)
         llm.orientation = LinearLayoutManager.VERTICAL
         recyclerView.layoutManager = llm
-        var adapter = ListAdapter(this@MainActivity, copyList as ArrayList<ResolveInfo>,packageManager)
-        adapter.getLaunchAppPublishSubject().subscribe{parent->
+        adapter = ListAdapter(this@MainActivity, copyList as ArrayList<ResolveInfo>,packageManager)
+        adapter?.getLaunchAppPublishSubject()?.subscribe{parent->
             launActivity(parent)
         }
         recyclerView.adapter = adapter
@@ -85,9 +86,9 @@ class MainActivity : AppCompatActivity() {
                     before: Int, count: Int
             ) {
 
+
                 var newList = listResolver?.filter { it.loadLabel(packageManager).toString().toLowerCase().startsWith(s.toString().toLowerCase()) }
                 adapter?.setData(newList!!)
-                adapter?.notifyDataSetChanged()
             }
         })
     }

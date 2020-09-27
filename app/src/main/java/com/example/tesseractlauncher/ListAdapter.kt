@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.content.pm.ResolveInfo
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -45,6 +46,7 @@ class ListAdapter(context: Activity, optionList: ArrayList<ResolveInfo>?, packag
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
+        Log.d("notifying","true")
         var parent = optionList!![position]
         holder.appName.text = String.format(context.resources.getString(R.string.app1_name)!!, parent.loadLabel(packageManager))
         holder.packagName.text = String.format(context.resources.getString(R.string.package_name)!!, parent.activityInfo.packageName)
@@ -77,8 +79,11 @@ class ListAdapter(context: Activity, optionList: ArrayList<ResolveInfo>?, packag
     }
 
     fun setData(data: List<ResolveInfo>) {
+        Log.d("data","changed")
+        Log.d("size",data?.size.toString())
         this.optionList?.clear()
         this.optionList?.addAll(data)
         notifyDataSetChanged()
     }
+
 }
