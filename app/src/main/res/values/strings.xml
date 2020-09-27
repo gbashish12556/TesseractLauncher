@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">TesseractLauncher</string>
+    <string name="app1_name">App Name: %1$s</string>
+    <string name="package_name">Package Name: %1$s</string>
+    <string name="version_code">Version Code: %1$s</string>
+    <string name="version_name">Version Name: %1$s</string>
+    <string name="activity_name">Activity Name: %1$s</string>
 </resources>
