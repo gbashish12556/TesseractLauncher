@@ -37,12 +37,8 @@ class MainActivity : AppCompatActivity() {
 
         intialiseRecyclerView()
         intialiseSearch()
-
-    }
-
-    override fun onResume() {
-        super.onResume()
         intialiseBroadCast()
+
     }
 
     override fun onDestroy() {
